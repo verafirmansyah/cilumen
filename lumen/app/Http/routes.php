@@ -19,7 +19,6 @@ $app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers','middlew
     // header('Access-Control-Allow-Origin: http://belajar.dev');
     // header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
     
-
     $app->get('book','BookController@index');
   
     // Get
@@ -29,8 +28,14 @@ $app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers','middlew
     $app->post('book','BookController@createBook');
     
     // Update  
-    $app->post('book/{id}','BookController@updateBook');
+    $app->put('book/{id}','BookController@updateBook');
       
     // Delete  
     $app->delete('book/{id}','BookController@deleteBook');
+
+    $app->get('news','NewsController@index');
+    $app->get('news/{id}','NewsController@getNews');
+    $app->post('news','NewsController@createNews');
+    $app->put('news/{id}','NewsController@updateNews');
+    $app->delete('news/{id}','NewsController@deleteNews');    
 });

@@ -42,11 +42,19 @@ class BookController extends Controller
   
     public function updateBook(Request $request,$id){
         $Book         = Book::find($id);
-        $Book->title  = $request->input('title');
-        $Book->author = $request->input('author');
-        $Book->isbn   = $request->input('isbn');
-        $Book->save();
+        $update = $Book->update($request->all());
   
-        return response()->json($Book);
+  
+        if ($update) {
+            $res['success'] = true;
+            $res['message'] = 'Success update!';
+
+            return response($res);
+        }else{
+            $res['success'] = false;
+            $res['message'] = 'Failed to update!';
+
+            return response($res);
+        }
     }
 }
